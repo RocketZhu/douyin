@@ -69,7 +69,7 @@ func (q *QueryUserLoginFlow) prepareData() error {
 	userLoginDAO := dao.NewUserLoginDao()
 	var login models.UserLogin
 	//准备好userid
-	err := userLoginDAO.QueryUserLogin(q.username, q.password, &login)
+	err := userLoginDAO.QueryUserLogin(q.username, q.password, &login, dao.DB)
 	if err != nil {
 		return err
 	}

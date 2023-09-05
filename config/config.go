@@ -1,8 +1,9 @@
 package config
 
 import (
-	"github.com/BurntSushi/toml"
 	"strings"
+
+	"github.com/BurntSushi/toml"
 )
 
 type Server struct {
@@ -21,11 +22,11 @@ type Config struct {
 var ServerConfig Config
 
 func init() {
-	if _, err := toml.DecodeFile("/Users/rocketzhu/Downloads/douyin/douyin/config/config.toml", &ServerConfig); err != nil {
+	if _, err := toml.DecodeFile("/Users/rocketzhu/CS/Projects/douyin/config/config.toml", &ServerConfig); err != nil {
 		panic(err)
 	}
 	//去除左右的空格
-	strings.Trim(ServerConfig.Server.ip, " ")
-	strings.Trim(ServerConfig.FfmpegPath, " ")
-	strings.Trim(ServerConfig.StaticSourcePath, " ")
+	ServerConfig.Server.ip = strings.Trim(ServerConfig.Server.ip, " ")
+	ServerConfig.FfmpegPath = strings.Trim(ServerConfig.FfmpegPath, " ")
+	ServerConfig.StaticSourcePath = strings.Trim(ServerConfig.StaticSourcePath, " ")
 }

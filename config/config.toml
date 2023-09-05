@@ -5,5 +5,5 @@ port = 8080
 
 #用于保存资源的路径，以及用于截图工具的路径（截图工具放在lib目录
 [path]
-ffmpeg_path = "/Users/rocketzhu/Downloads/douyin/douyin/lib/ffmpeg"
-static_source_path = "/Users/rocketzhu/Downloads/douyin/douyin/static"
+ffmpeg_path = "/Users/rocketzhu/CS/Projects/douyin/lib/ffmpeg"
+static_source_path = "/Users/rocketzhu/CS/Projects/douyin/static"

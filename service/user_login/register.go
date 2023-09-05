@@ -69,15 +69,15 @@ func (q *PostUserLoginFlow) updateData() error {
 	//判断用户名是否已经存在
 	userLoginDAO := dao.NewUserLoginDao()
 	println("s001")
-	if userLoginDAO.IsUserExistByUsername(q.username) {
+	if userLoginDAO.IsUserExistByUsername(q.username, dao.DB) {
 		println("s002")
 		return errors.New("用户名已存在")
 	}
 	println("s003")
-	//更新操作，由于userLogin属于userInfo，故更新userInfo即可，且由于传入的是指针，所以插入的数据内容也是清楚的
+	//更新操作，userLogin属于userInfo，更新userInfo即可
 	userInfoDAO := dao.NewUserInfoDAO()
 	println("s004")
-	err := userInfoDAO.AddUserInfo(&userinfo)
+	err := userInfoDAO.AddUserInfo(&userinfo, dao.DB)
 	if err != nil {
 		println("s005")
 		return err

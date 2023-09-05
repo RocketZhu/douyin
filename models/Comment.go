@@ -11,9 +11,4 @@ type Comment struct {
 	CreatedAt  time.Time `json:"-"`
 	CreateDate string    `json:"create_date" gorm:"-"`
 }
-type CommentDAO struct {
-}
 
-var (
-	commentDao CommentDAO
-)

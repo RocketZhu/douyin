@@ -36,7 +36,7 @@ func TestAddUserInfo(t *testing.T) {
 	}
 
 	// 调用被测试的函数
-	err := userInfoDAO.AddUserInfo(userinfo)
+	err := userInfoDAO.AddUserInfo(userinfo, DB)
 	if err != nil {
 		t.Errorf("Error adding user info: %v", err)
 	}

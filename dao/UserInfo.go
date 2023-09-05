@@ -38,7 +38,7 @@ func (u *UserInfoDAO) QueryUserInfoById(userId int64, userinfo *models.UserInfo)
 	return nil
 }
 
-func (u *UserInfoDAO) AddUserInfo(userinfo *models.UserInfo) error {
+func (u *UserInfoDAO) AddUserInfo(userinfo *models.UserInfo, DB *gorm.DB) error {
 	if userinfo == nil {
 		return errors.New("空指针错误")
 	}
