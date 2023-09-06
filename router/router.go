@@ -1,6 +1,7 @@
 package router
 
 import (
+	"douyin/config"
 	"douyin/dao"
 	"douyin/handlers/chat_handler"
 	"douyin/handlers/comment_handler"
@@ -8,14 +9,16 @@ import (
 	userInfoHandler "douyin/handlers/user_info_handler"
 	videoHandler "douyin/handlers/video_handler"
 	"douyin/middleware"
+
 	"github.com/gin-gonic/gin"
 )
 
 func Init() *gin.Engine {
 	dao.InitDB()
 	r := gin.Default()
+	r.Static("static", config.ServerConfig.StaticSourcePath)
 	baseGroup := r.Group("/douyin")
-	
+
 	// 基础接口
 	baseGroup.GET("/feed/", videoHandler.FeedVideoListHandler)
 	baseGroup.GET("/user/", middleware.JWTMiddleWare(), userInfoHandler.UserInfoHandler)

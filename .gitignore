@@ -21,7 +21,8 @@
 go.work
 
 # Images and Videos
-*.jpg
-*.mp4
+# *.jpg
+# *.mp4
 
-tmp/
+tmp/*
+static/*
