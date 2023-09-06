@@ -11,11 +11,11 @@ import (
 	"time"
 )
 
-var ip string = "192.168.1.1"
-var port string = "8080"
+var ip string = config.ServerConfig.Server.Ip
+var port int = config.ServerConfig.Server.Port
 
 func GetFileUrl(fileName string) string {
-	base := fmt.Sprintf("https://%s:%s/static/%s", ip, port, fileName)
+	base := fmt.Sprintf("http://%v:%v/static/%v", ip, port, fileName)
 	return base
 }
 

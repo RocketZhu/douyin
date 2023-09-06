@@ -14,12 +14,11 @@ type UserInfoResponse struct {
 }
 
 func UserInfoHandler(c *gin.Context) {
-	rawId, ok := c.Get("user_id") // 从上99999/9
-	// 户ID
+	rawId, ok := c.Get("user_id")
 	if !ok {
 		c.JSON(http.StatusOK, UserInfoResponse{
 			StatusCode: 1,
-			StatusMsg:  "用户ID解析错误", // 用户ID解析错误的错误消息
+			StatusMsg:  "用户ID解析错误",
 		})
 		return
 	}
@@ -28,11 +27,10 @@ func UserInfoHandler(c *gin.Context) {
 	if !ok {
 		c.JSON(http.StatusOK, UserInfoResponse{
 			StatusCode: 1,
-			StatusMsg:  "用户ID解析失败", // 用户ID解析失败的错误消息
+			StatusMsg:  "用户ID解析失败",
 		})
 		return
 	}
-
 	UserInfoDAO := dao.NewUserInfoDAO() // 创建用户信息数据访问对象
 
 	var userInfo models.UserInfo                                             // 创建用户信息对象

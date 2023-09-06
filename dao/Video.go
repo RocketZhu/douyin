@@ -4,10 +4,11 @@ import (
 	"douyin/models"
 	"errors"
 	"fmt"
-	"gorm.io/gorm"
 	"log"
 	"sync"
 	"time"
+
+	"gorm.io/gorm"
 )
 
 type VideoDAO struct {

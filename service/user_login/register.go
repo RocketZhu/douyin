@@ -5,7 +5,6 @@ import (
 	"douyin/middleware"
 	"douyin/models"
 	"errors"
-	"fmt"
 )
 
 // PostUserLogin 注册用户并得到token和id
@@ -28,18 +27,15 @@ type PostUserLoginFlow struct {
 
 func (q *PostUserLoginFlow) Do() (*LoginResponse, error) {
 	//对参数进行合法性验证
-	fmt.Println("111")
 	if err := q.checkNum(); err != nil {
 		return nil, err
 	}
 
-	fmt.Println("222")
 	//更新数据到数据库
 	if err := q.updateData(); err != nil {
 		return nil, err
 	}
 
-	fmt.Println("333")
 	//打包response
 	if err := q.packResponse(); err != nil {
 		return nil, err
@@ -68,18 +64,13 @@ func (q *PostUserLoginFlow) updateData() error {
 
 	//判断用户名是否已经存在
 	userLoginDAO := dao.NewUserLoginDao()
-	println("s001")
 	if userLoginDAO.IsUserExistByUsername(q.username, dao.DB) {
-		println("s002")
 		return errors.New("用户名已存在")
 	}
-	println("s003")
 	//更新操作，userLogin属于userInfo，更新userInfo即可
 	userInfoDAO := dao.NewUserInfoDAO()
-	println("s004")
 	err := userInfoDAO.AddUserInfo(&userinfo, dao.DB)
 	if err != nil {
-		println("s005")
 		return err
 	}
 
@@ -91,7 +82,6 @@ func (q *PostUserLoginFlow) updateData() error {
 	q.token = token
 	q.userid = userinfo.Id
 
-	println("s005")
 	return nil
 }
 

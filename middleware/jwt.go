@@ -58,10 +58,7 @@ func ParseToken(tokenString string) (*MyClaims, error) {
 func JWTMiddleWare() gin.HandlerFunc {
 	return func(c *gin.Context) {
 		//无论注册或登录，都先向客户端请求token
-		tokenStr := c.Query("token")
-		if tokenStr == "" {
-			tokenStr = c.PostForm("token")
-		}
+		tokenStr := c.DefaultQuery("token", c.PostForm("token"))
 		//用户不存在
 		if tokenStr == "" {
 			c.JSON(http.StatusOK, CommonResponse{StatusCode: 401, StatusMsg: "用户不存在"})
@@ -69,8 +66,8 @@ func JWTMiddleWare() gin.HandlerFunc {
 			return
 		}
 		//验证token
-		tokenStruck, ok := ParseToken(tokenStr)
-		if ok != nil {
+		tokenStruck, err := ParseToken(tokenStr)
+		if err != nil {
 			c.JSON(http.StatusOK, CommonResponse{
 				StatusCode: 403,
 				StatusMsg:  "token不正确",

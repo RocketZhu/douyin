@@ -28,7 +28,6 @@ func UserRegisterHandler(c *gin.Context) { // 用户注册处理函数，接收�
 		return
 	}
 	
-	fmt.Printf("%v:%v\n", username, password)
 
 	RegisterResponse, err := user_login.PostUserLogin(username, password) // 调用登录函数进行登录操作
 

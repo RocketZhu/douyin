@@ -39,8 +39,6 @@ func (u *UserLoginDAO) QueryUserLogin(username, password string, login *models.U
 // IsUserExistByUsername 检查用户名是否存在
 func (u *UserLoginDAO) IsUserExistByUsername(username string, DB *gorm.DB) bool {
 	var userLogin models.UserLogin
-	println("d001")
 	DB.Where("username=?", username).First(&userLogin)
-	println("d002")
 	return userLogin.Id != 0
 }

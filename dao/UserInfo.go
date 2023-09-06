@@ -31,7 +31,6 @@ func (u *UserInfoDAO) QueryUserInfoById(userId int64, userinfo *models.UserInfo)
 	}
 	//DB.Where("id=?",userId).First(userinfo)
 	DB.Where("id=?", userId).Select([]string{"id", "name", "follow_count", "follower_count", "is_follow"}).First(userinfo)
-	//id为零值，说明sql执行失败
 	if userinfo.Id == 0 {
 		return errors.New("该用户不存在")
 	}

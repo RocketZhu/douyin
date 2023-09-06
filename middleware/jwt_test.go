@@ -29,4 +29,15 @@ func TestReleaseToken(t *testing.T) {
 		t.Errorf("Release token failed")
 	}
 	fmt.Printf("token: %v\n", token)
+	//token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJZCI6MSwiZXhwIjoxNjk0NTg0NzY1LCJpYXQiOjE2OTM5Nzk5NjUsImlzcyI6ImRvdXlpbiJ9.IAsK9W8Eh7m_4DYcL1rbYsivAW4f_dfAQoci1qImJiw
+}
+
+func TestParseToken(t *testing.T) {
+	token := "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJZCI6MSwiZXhwIjoxNjk0NTg0NzY1LCJpYXQiOjE2OTM5Nzk5NjUsImlzcyI6ImRvdXlpbiJ9.IAsK9W8Eh7m_4DYcL1rbYsivAW4f_dfAQoci1qImJiw"
+	claims, err := ParseToken(token)
+	if err != nil {
+		t.Errorf(err.Error())
+	}
+	fmt.Printf("claims: %v\n", claims.Id)
+
 }

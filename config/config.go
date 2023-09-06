@@ -7,8 +7,8 @@ import (
 )
 
 type Server struct {
-	ip   string
-	port int
+	Ip   string
+	Port int
 }
 type Path struct {
 	FfmpegPath       string `toml:"ffmpeg_path"`
@@ -26,7 +26,7 @@ func init() {
 		panic(err)
 	}
 	//去除左右的空格
-	ServerConfig.Server.ip = strings.Trim(ServerConfig.Server.ip, " ")
+	ServerConfig.Server.Ip = strings.Trim(ServerConfig.Server.Ip, " ")
 	ServerConfig.FfmpegPath = strings.Trim(ServerConfig.FfmpegPath, " ")
 	ServerConfig.StaticSourcePath = strings.Trim(ServerConfig.StaticSourcePath, " ")
 }

@@ -15,8 +15,8 @@ func Init() *gin.Engine {
 	dao.InitDB()
 	r := gin.Default()
 	baseGroup := r.Group("/douyin")
-	//根据灵活性考虑是否加入JWT中间件来进行鉴权，还是在之后再做鉴权
-	// basic apis
+	
+	// 基础接口
 	baseGroup.GET("/feed/", videoHandler.FeedVideoListHandler)
 	baseGroup.GET("/user/", middleware.JWTMiddleWare(), userInfoHandler.UserInfoHandler)
 	baseGroup.POST("/user/login/", middleware.SHAMiddleware(), loginHandler.UserLoginHandler)

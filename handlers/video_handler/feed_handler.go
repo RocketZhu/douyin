@@ -62,7 +62,7 @@ func (p *FeedVideoList) DoNoToken() error {
 // DoHasToken 如果是登录状态，则生成UserId字段
 func (p *FeedVideoList) DoHasToken(token string) error {
 	//解析成功
-	if claim, ok := middleware.ParseToken(token); ok != nil {
+	if claim, err := middleware.ParseToken(token); err == nil {
 		//token超时
 		if time.Now().Unix() > claim.ExpiresAt {
 			return errors.New("token超时")

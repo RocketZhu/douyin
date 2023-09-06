@@ -45,7 +45,7 @@ func PublishVideoHandler(c *gin.Context) {
 		return
 	}
 
-	//支持多文件上传
+	//多文件上传
 	files := form.File["data"]
 	for _, file := range files {
 		suffix := filepath.Ext(file.Filename)  //得到后缀

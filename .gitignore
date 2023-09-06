@@ -19,3 +19,9 @@
 
 # Go workspace file
 go.work
+
+# Images and Videos
+*.jpg
+*.mp4
+
+tmp/
