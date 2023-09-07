@@ -61,7 +61,6 @@ func TestIsUserExistById(t *testing.T) {
 
 func TestGetFollowListByUserId(t *testing.T) {
 	// 初始化数据库连接和事务
-	setupDB()
 
 	// 准备测试数据
 	userId := int64(1)

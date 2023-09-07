@@ -106,9 +106,9 @@ func (u *UserInfoDAO) GetFollowerListByUserId(userId int64, userList *[]*models.
 	if err = DB.Raw("SELECT u.* FROM user_relations r, user_infos u WHERE r.follow_id = ? AND r.user_info_id = u.id", userId).Scan(userList).Error; err != nil {
 		return err
 	}
-	//if len(*userList) == 0 || (*userList)[0].Id == 0 {
-	//	return ErrEmptyUserList
-	//}
+	if len(*userList) == 0 || (*userList)[0].Id == 0 {
+		return errors.New("粉丝列表为空")
+	}
 	return nil
 }
 
@@ -130,6 +130,7 @@ func (i *IndexMap) GetUserRelation(userId int64, followId int64) bool {
 	ret := rdb.SIsMember(ctx, key, followId)
 	return ret.Val()
 }
+////////////////////////// //////////////////////////
 
 func (u *UserInfoDAO) GetFriendsListByUserId(userId int64, userList *[]*models.UserInfo) error {
 	if userList == nil {

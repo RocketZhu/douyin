@@ -3,9 +3,10 @@ package comment_handler
 import (
 	"douyin/service/comment"
 	"errors"
-	"github.com/gin-gonic/gin"
 	"net/http"
 	"strconv"
+
+	"github.com/gin-gonic/gin"
 )
 
 type ListResponse struct {

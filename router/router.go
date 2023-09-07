@@ -27,22 +27,24 @@ func Init() *gin.Engine {
 	baseGroup.POST("/publish/action/", middleware.JWTMiddleWare(), videoHandler.PublishVideoHandler)
 	baseGroup.GET("/publish/list/", middleware.GetIdWithoutAuth(), videoHandler.QueryVideoListHandler)
 
+	//互动接口
 	GroupOne := baseGroup.Group("/favorite", middleware.JWTMiddleWare())
-	GroupOne.POST("/favorite/action/", videoHandler.PostFavorHandler)
-	GroupOne.GET("/favorite/list/", videoHandler.QueryFavorVideoListHandler)
+	GroupOne.POST("/action/", videoHandler.PostFavorHandler)
+	GroupOne.GET("/list/", videoHandler.QueryFavorVideoListHandler)
 
 	GroupTwo := baseGroup.Group("/comment", middleware.JWTMiddleWare())
-	GroupTwo.POST("/comment/action/", comment_handler.PostCommentHandler)
-	GroupTwo.GET("/comment/list/", comment_handler.QueryCommentListHandler)
+	GroupTwo.POST("/action/", comment_handler.PostCommentHandler)
+	GroupTwo.GET("/list/", comment_handler.QueryCommentListHandler)
 
+	//社交接口
 	GroupThree := baseGroup.Group("/relation", middleware.JWTMiddleWare())
-	GroupThree.POST("/relation/action/", userInfoHandler.PostFollowActionHandler)
-	GroupThree.GET("/relation/follow/list/", userInfoHandler.QueryFollowListHandler)
-	GroupThree.GET("/relation/follower/list/", userInfoHandler.QueryFollowerHandler)
-	GroupThree.GET("/relation/friend/list/")
+	GroupThree.POST("action/", userInfoHandler.PostFollowActionHandler)
+	GroupThree.GET("/follow/list/", userInfoHandler.QueryFollowListHandler)
+	GroupThree.GET("/follower/list/", userInfoHandler.QueryFollowerHandler)
+	GroupThree.GET("/friend/list/", userInfoHandler.QueryFriendsListHandler)
 
 	GroupFour := baseGroup.Group("/message", middleware.JWTMiddleWare())
-	GroupFour.GET("/message/chat/", chat_handler.ChatListHandler)
-	GroupFour.POST("/message/action/", chat_handler.PostMessage)
+	GroupFour.GET("/chat/", chat_handler.ChatListHandler)
+	GroupFour.POST("/action/", chat_handler.PostMessage)
 	return r
 }
